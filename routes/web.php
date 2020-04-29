@@ -14,5 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('auth/index');
+});
+Route::get('/loginkar', function () {
+    return view('auth/loginkar');
+});
+Route::get('/loginadm', function () {
+    return view('auth/loginadm');
+});
+
+Route::get('/karyawan', function () {
+    return view('karyawan/index');
+});
+
+Route::get('/about', function () {
     return view('welcome');
 });
