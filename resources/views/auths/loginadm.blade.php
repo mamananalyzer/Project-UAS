@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <form action="{{ url('/login') }}" method="post">
-            @csrf
+        <form action="{{ url('/postloginadm') }}" method="post">
+            {{ csrf_field() }}
             <div class="form-group">
                 <label for="email" class="control-label">Email : </label>
                 <input name="email" type="email" class="form-control" id="email" placeholder="Email">
