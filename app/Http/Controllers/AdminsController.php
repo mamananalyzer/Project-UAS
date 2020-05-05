@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use App\Employee;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminsController extends Controller
@@ -16,7 +17,7 @@ class AdminsController extends Controller
     public function index()
     {
         $employees = Employee::all();
-        return view('admins.index', compact('employee'));
+        return view('admins.index', compact('employees'));
     }
 
     /**
@@ -26,7 +27,7 @@ class AdminsController extends Controller
      */
     public function create()
     {
-        return view('karyawan.create');
+        return view('admins.create');
     }
 
     /**
@@ -37,7 +38,54 @@ class AdminsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formInput=$request->except('picture');
+
+        $this->validate($request,[
+            'nama' => 'required',
+            'nik' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'jabatan' => 'required',
+            // 'jabatan' => 'required|unique:products',
+            'dept' => 'required',
+            'npwp' => 'required',
+            'grade' => 'required',
+            'cabang' => 'required',
+            'bulan' => 'required',
+            'gajipokok' => 'required',
+            'makan' => 'required',
+            'transport' => 'required',
+            'absen' => 'required',
+        ]);
+
+        $image=$request->picture;
+        if($image){
+            $imageName=$image->getClientOriginalName();
+            $image->move('images/', $imageName);
+            $formInput['picture']=$imageName;
+        }
+
+        Employee::create($formInput);
+
+        // $this->validate($request,[
+        //     'nama' => 'required',
+        //     'nik' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        // ]);
+        // User->update([
+        //     $user->name=$request->'nama'
+        //     $user->email='dbasedown211@gmail.com'
+        //     $user->nik='12161191'
+        //     $user->password=bcrypt('worm21011003045')
+        //     'title' => 'something',
+        //     'price' => 12
+        //   ]);
+        // User::create($request);
+
+        // dd($request->all());
+        return redirect('/admins')->with('status',
+        'Terima kasih sudah menginput data, data berhasil ditambahkan!');
     }
 
     /**

@@ -22,8 +22,9 @@ Route::post('/postloginkar', 'AuthkarController@postlogin');
 Route::get('/logout', 'AuthkarController@logout');
 
 Route::get('/admins', 'AdminsController@index');
+Route::get('/admins/create', 'AdminsController@create');
 Route::get('/admins/{employees}', 'AdminsController@show');
-Route::get('/karyawan/create', 'AdminsController@create');
+Route::post('/admins', 'AdminsController@store');
 
 
 Route::get('/employees', 'EmployeesController@index');

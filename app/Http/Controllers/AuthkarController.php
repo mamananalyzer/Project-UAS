@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Employee;
 use Illuminate\Http\Request;
 
 class AuthkarController extends Controller
@@ -13,9 +14,27 @@ class AuthkarController extends Controller
     }
     public function postlogin(Request $request)
     {
-        if(Auth::attempt($request->only('nik','password'))){
-            return redirect('/employees');
+        $this->validate($request, [
+            'nik' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user_data = array(
+            'nik'  => $request->get('nik'),
+            'password' => $request->get('password')
+        );
+        if(!Auth::attempt($user_data)){
+            return redirect('loginkar');
         }
+
+        if ( Auth::check() ) {
+            return redirect('employees');
+        }
+
+
+        // if(Auth::guard('employees')->attempt($request->only('nik','password'))){
+        //     return redirect('/employees');
+        // }
         return redirect('/loginkar');
     }
     public function logout()

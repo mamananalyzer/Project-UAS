@@ -34,7 +34,7 @@
 								<div class="logo text-center"><img width="150" src="{{asset('img/logo.jpg')}}" alt="Logo"></div>
 								<p class="lead">Login</p>
 							</div>
-                            <form class="form-auth-small" action="{{url('/postlogin')}}" method="post">
+                            <form class="form-auth-small" action="{{url('/postloginkar')}}" method="post">
                                 {{ csrf_field() }}
 								<div class="form-group">
 									<label for="signin-nik" class="control-label sr-only">NIK</label>

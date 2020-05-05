@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'employees',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'employees',
         ],
 
         'api' => [
@@ -46,10 +46,10 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-        'employees' => [
+        'employee' => [
             'redirectTo' => 'employee.home',
             'driver' => 'session',
-            'provider' => 'employees',
+            'provider' => 'employee',
            ],
     ],
 

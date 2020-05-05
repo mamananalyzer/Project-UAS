@@ -12,23 +12,14 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="email" class="control-label">Email : </label>
-                <input name="email" type="email" class="form-control" id="email" placeholder="Email">
+                <input name="email" type="email" class="form-control" id="email" placeholder="test@gmail.com">
             </div>
             <div class="form-group">
                 <label for="signin-password" class="control-label">Password : </label>
-                <input name="password" type="password" class="form-control" id="signin-password" placeholder="Password">
+                <input name="password" type="password" class="form-control" id="signin-password" placeholder="123456789">
             </div>
             <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
         </form>
     </div>
-
-
-
-
-    {{-- {!! Form::open(['url' => '/login']) !!}
-    <div class="form-group">
-        {!! Form::label('nik', 'NIK     : ', ['class' => 'control-label']) !!}
-        {!! Form::text('nik', null, ['class' => 'form-control']) !!}
-    </div> --}}
 </body>
 </html>
