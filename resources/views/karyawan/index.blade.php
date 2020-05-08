@@ -9,23 +9,24 @@
 </head>
 <body>
     <div class="container">
+        @foreach ($employees as $emp)
         <div class="row">
             <div class="col">
                 <table>
                     <tr>
                         <td>NIK/Nama</td>
                         <td class="pl-4 pr-2">:</td>
-                        <td>87654321 - Ade Maman Suherman</td>
+                        <td>{{ $emp->nik }} - {{ $emp->name }}</td>
                     </tr>
                     <tr>
                         <td>Jabatan</td>
                         <td class="pl-4 pr-2">:</td>
-                        <td>Staff</td>
+                        <td>{{ $emp->jabatan }}</td>
                     </tr>
                     <tr>
                         <td>Dept/Sect</td>
                         <td class="pl-4 pr-2">:</td>
-                        <td>- / -</td>
+                        <td>{{ $emp->dept }}</td>
                     </tr>
                 </table>
             </div>
@@ -34,17 +35,17 @@
                     <tr>
                         <td>NPWP</td>
                         <td class="pl-4 pr-2">:</td>
-                        <td>-</td>
+                        <td>{{ $emp->npwp }}</td>
                     </tr>
                     <tr>
                         <td>Gol/Grade</td>
                         <td class="pl-4 pr-2">:</td>
-                        <td>-</td>
+                        <td>{{ $emp->grade }}</td>
                     </tr>
                     <tr>
                         <td>Cabang</td>
                         <td class="pl-4 pr-2">:</td>
-                        <td>-</td>
+                        <td>{{ $emp->cabang }}</td>
                     </tr>
                 </table>
             </div>
@@ -68,15 +69,16 @@
                 <p>Tunjangan Transport</p>
             </div>
             <div class="col text-right">
-                <p>2000000</p>
-                <p>300000</p>
-                <p>200000</p>
+                <p>{{ $emp->gajipokok }}</p>
+                <p>{{ $emp->makan }}</p>
+                <p>{{ $emp->transport }}</p>
             </div>
             <div class="col-4">
-                <p>Potongan Absen (A : 0 / S : 0 / D : 3)hr</p>
+                <p>Potongan Absen ({{ $emp->absen }})hr</p>
             </div>
             <div class="col text-right">
-                <p>120000</p>
+                {{-- {{$potong=$emp->nik*100000}} --}}
+                <p>{{ $emp->absen }} hr</p>
             </div>
         </div>
 
@@ -88,7 +90,7 @@
                         <h6>Total Penerimaan</h6>
                     </div>
                     <div class="col text-right">
-                        <h6>2500000</h6>
+                        <h6>{{ $total=$emp->gajipokok+$emp->makan+$emp->transport }}</h6>
                     </div>
                 </div>
             </div>
@@ -98,7 +100,7 @@
                         <h6>Total Potongan</h6>
                     </div>
                     <div class="col text-right">
-                        <h6>120000</h6>
+                        <h6>{{ $potong=$total/30*$emp->absen }}</h6>
                     </div>
                 </div>
             </div>
@@ -112,19 +114,19 @@
                         <h6>Take Home Pay</h6>
                     </div>
                     <div class="col text-right">
-                        <button disabled class="btn btn-info">2380000</button>
+                        <button disabled class="btn btn-info">{{ $takehome=$total-$potong }}</button>
                     </div>
                 </div>
                 <br>
                 <h6>Ditransfer Ke :</h6>
                 <p>Permata Cab.</p>
                 <p>No. A/C 0041.2050.4075</p>
-                <p>a.n. Ade Maman Suherman</p>
+                <p>a.n. {{ $emp->name }}</p>
             </div>
             <div class="col">
                 <div class="row">
                     <div class="col"></div>
-                    <div class="col text-center">JAKARTA,</div>
+                    <div class="col text-center">JAKARTA, {{ $emp->bulan }}</div>
                 </div>
                 <div class="row">
                     <div class="col text-center">
@@ -141,7 +143,7 @@
                         <br>
                         <br>
                         <br>
-                        <h6>Ade Maman Suherman</h6>
+                        <h6>{{ $emp->name }}</h6>
                     </div>
                 </div>
             </div>
@@ -149,6 +151,7 @@
                 <button>PRINT</button>
             </div>
         </div>
+        @endforeach
     </div>
 </body>
 </html>

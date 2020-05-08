@@ -19,13 +19,25 @@
             }">
             {{ csrf_field() }}
             <div class="form-group">
-                <label for="nama" class="sr-only"></label>
-                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Nama" name="nama" value="{{ old('nama')}}">
-                @error('nama')
+                <label for="name" class="sr-only"></label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="name" name="name" value="{{ old('name')}}">
+                @error('name')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
+            </div>
+            <div class="form-group">
+                <label for="role" class="sr-only"></label>
+                <select class="form-control @error('role') is-invalid @enderror" id="role" name="role">
+                    <option value="admin">admin</option>
+                    <option value='user'>user</option>
+                    @error('role')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </select>
             </div>
             <div class="form-group">
                 <label for="nik" class="sr-only"></label>
@@ -47,7 +59,7 @@
             </div>
             <div class="form-group">
                 <label for="password" class="sr-only"></label>
-                <input type="text" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="password" name="password" value="{{ old('password')}}">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="password" name="password" value="{{ old('password')}}">
                 @error('password')
                     <div class="invalid-feedback">
                         {{ $message }}

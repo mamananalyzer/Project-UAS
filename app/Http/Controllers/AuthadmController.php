@@ -13,9 +13,10 @@ class AuthadmController extends Controller
     }
     public function postlogin(Request $request)
     {
-        if(Auth::attempt($request->only('email','password'))){
+        if(Auth::attempt($request->only('email', 'password'))){
             return redirect('/admins');
         }
+        // dd($request->all());
         return redirect('/loginadm');
     }
     public function logout()
